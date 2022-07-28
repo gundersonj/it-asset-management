@@ -4,6 +4,7 @@
 
 {% block content %}
 {% include "navbar.html" %}
+<a href="{% url 'setup:location_add' %}" class="btn btn-success">Add Location</a>
 {% if location_list %}
 <div class="container">
     <table class="table">

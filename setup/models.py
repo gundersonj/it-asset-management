@@ -13,5 +13,5 @@ class Location(models.Model):
         max_length=255,
     )
 
-    def _str_(self):
+    def __str__(self):
         return self.location_name
