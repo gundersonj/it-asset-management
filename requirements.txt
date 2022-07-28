@@ -1,0 +1,7 @@
+Django==3.2.14
+psycopg2-binary==2.9.3
+django-crispy-forms==1.14.0
+django-allauth==0.51.0
+django-import-export==2.8.0
+pandas==1.4.3
+python-dotenv==0.20.0
