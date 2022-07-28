@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+
+{% block title %}Locations{% endblock title %}
+
+{% block content %}
+{% include "navbar.html" %}
+{% if location_list %}
+<div class="container">
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th>Location ID</th>
+                <th>Location Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for location in location_list %}
+            <tr>
+                <td>{{ location.location_id }}</td>
+                <td>{{ location.location_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<h1>There are no locations currently setup.</h1>
+{% endif %}
+{% endblock content %}

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Local Apps
     "accounts",
     "webpages",
+    "setup",
 ]
 
 MIDDLEWARE = [

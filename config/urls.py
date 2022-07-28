@@ -23,4 +23,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Local Apps
     path("", include("webpages.urls")),
+    path("setup/", include("setup.urls")),
 ]
