@@ -7,11 +7,12 @@
 <a href="{% url 'setup:location_add' %}" class="btn btn-success">Add Location</a>
 {% if location_list %}
 <div class="container">
-    <table class="table">
+    <table class="table table-sm">
         <thead class="thead">
             <tr>
                 <th>Location ID</th>
                 <th>Location Name</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
             <tr>
                 <td>{{ location.location_id }}</td>
                 <td>{{ location.location_name }}</td>
+                <td><a class="btn btn-outline-dark" href="{% url 'setup:location_edit' location.pk %}">Edit</a></td>
             </tr>
             {% endfor %}
         </tbody>
