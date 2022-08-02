@@ -19,3 +19,19 @@ class Location(models.Model):
 
     def get_absolute_url(self):
         return reverse("setup:location_detail", args=[str(self.location_id)])
+
+
+class EmailLicense(models.Model):
+    license_id = models.CharField(
+        _("License ID"),
+        primary_key=True,
+        max_length=255,
+    )
+    license_price = models.DecimalField(
+        _("License Price"),
+        max_digits=10,
+        decimal_places=2,
+    )
+
+    def __str__(self):
+        return self.license_id

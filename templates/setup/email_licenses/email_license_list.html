@@ -1,0 +1,34 @@
+{% extends "_base.html" %}
+
+{% block title %}Email Licenses{% endblock title %}
+
+{% block content %}
+{% include "navbar.html" %}
+<a href="{% url 'setup:email_license_add' %}" class="btn btn-success">Add License</a>
+
+{% if email_license_list %}
+<div class="container">
+    <table class="table table-sm">
+        <thead class="thead">
+            <tr>
+                <th>Email License ID</th>
+                <th>License Price</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for license in email_license_list %}
+            <tr>
+                <td>{{ license.license_id }}</td>
+                <td>{{ license.license_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<h1>There are no licenses currently setup.</h1>
+{% endif %}
+{% endblock content %}

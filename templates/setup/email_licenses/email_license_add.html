@@ -1,0 +1,13 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Email License{% endblock title %}
+
+{% block content %}
+<h3>Add Email License.</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-warning">Save License</button>
+</form>
+{% endblock content %}
