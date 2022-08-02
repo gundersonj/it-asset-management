@@ -53,10 +53,3 @@ class EmailLicenseCreateView(TestCase):
         self.assertTemplateUsed(
             self.response, "setup/email_licenses/email_license_add.html"
         )
-
-    def test_url_resolves_correct_view(self):
-        view = resolve("/setup/licenses/add/")
-        self.assertEqual(
-            view.func.__name__,
-            EmailLicenseCreateView.as_view().__name__,
-        )
