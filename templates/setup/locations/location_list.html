@@ -14,6 +14,7 @@
                 <th>Location Name</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,8 @@
             <tr>
                 <td>{{ location.location_id }}</td>
                 <td>{{ location.location_name }}</td>
+                <td><a class="btn btn-outline-secondary" href="{{ location.get_absolute_url }}">Detail</a>
+                </td>
                 <td><a class="btn btn-outline-dark" href="{% url 'setup:location_edit' location.pk %}">Edit</a></td>
                 <td><a class="btn btn-outline-warning" href="{% url 'setup:location_delete' location.pk %}">Delete</a>
                 </td>

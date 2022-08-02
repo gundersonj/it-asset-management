@@ -6,15 +6,17 @@ from .views import (
     LocationCreateView,
     LocationUpdateView,
     LocationDeleteView,
+    LocationDetailView,
 )
 
 app_name = "setup"
 
 urlpatterns = [
-    path("locations/<pk>/edit/", LocationUpdateView.as_view(), name="location_edit"),
     path(
         "locations/<pk>/delete/", LocationDeleteView.as_view(), name="location_delete"
     ),
+    path("locations/<pk>/edit/", LocationUpdateView.as_view(), name="location_edit"),
     path("locations/add/", LocationCreateView.as_view(), name="location_add"),
+    path("locations/<pk>/", LocationDetailView.as_view(), name="location_detail"),
     path("locations/", LocationListView.as_view(), name="location_list"),
 ]

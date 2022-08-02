@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 
 from .models import Location
 from .forms import LocationForm
@@ -30,3 +31,9 @@ class LocationDeleteView(LoginRequiredMixin, DeleteView):
     model = Location
     template_name = "setup/locations/location_delete.html"
     success_url = reverse_lazy("setup:location_list")
+
+
+class LocationDetailView(LoginRequiredMixin, DetailView):
+    model = Location
+    template_name = "setup/locations/location_detail.html"
+    context_object_name = "location"

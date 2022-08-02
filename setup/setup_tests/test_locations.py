@@ -1,7 +1,13 @@
 from django.test import TestCase, tag
 from django.urls import reverse, resolve
 from django.contrib.auth import get_user_model
-from setup.views import LocationListView, LocationCreateView, LocationUpdateView
+from setup.views import (
+    LocationListView,
+    LocationCreateView,
+    LocationUpdateView,
+    LocationDeleteView,
+    LocationDetailView,
+)
 from setup.models import Location
 
 
@@ -164,13 +170,9 @@ class LocationDeleteViewTests(TestCase):
             username="TestUser",
             password="testpass123",
         )
-        self.new_location = Location.objects.create(
+        self.location = Location.objects.create(
             location_id="003",
             location_name="3rd Location",
-        )
-        self.location = Location.objects.create(
-            location_id="002",
-            location_name="2nd Location",
         )
         self.response = self.client.get(
             reverse("setup:location_delete", kwargs={"pk": self.location.location_id})
@@ -191,6 +193,52 @@ class LocationDeleteViewTests(TestCase):
         )
 
     def test_template_used(self):
-        self.assertTemplateUsed(
-            self.response, "setup/locations/location_delete.html"
+        self.assertTemplateUsed(self.response, "setup/locations/location_delete.html")
+
+    def test_url_resolves_correct_view(self):
+        view = resolve("/setup/locations/3/delete/")
+        self.assertEqual(
+            view.func.__name__,
+            LocationDeleteView.as_view().__name__,
+        )
+
+
+@tag("detailview")
+class LocationDetailViewTests(TestCase):
+    def setUp(self):
+        self.location = Location.objects.create(
+            location_id="4",
+            location_name="4th Location",
+        )
+
+        self.user = get_user_model().objects.create_user(
+            username="TestUser",
+            email="test@email.com",
+            password="testpass123",
+        )
+        self.login = self.client.login(
+            username="TestUser",
+            password="testpass123",
+        )
+        self.response = self.client.get(
+            self.location.get_absolute_url(),
+        )
+
+    def test_status_code(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_template_used(self):
+        self.assertTemplateUsed(self.response, "setup/locations/location_detail.html")
+
+    def test_contains_correct_html(self):
+        self.assertContains(self.response, "Details")
+
+    def test_does_not_contain_incorrect_html(self):
+        self.assertNotContains(self.response, "Homepage")
+
+    def test_url_resolves_correct_view(self):
+        view = resolve("/setup/locations/4/")
+        self.assertEqual(
+            view.func.__name__,
+            LocationDetailView.as_view().__name__,
         )
