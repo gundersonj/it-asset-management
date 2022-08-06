@@ -35,3 +35,6 @@ class EmailLicense(models.Model):
 
     def __str__(self):
         return self.license_id
+
+    def get_absolute_url(self):
+        return reverse("setup:email_license_detail", args=[str(self.license_id)])

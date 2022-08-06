@@ -53,3 +53,9 @@ class EmailLicenseCreateView(TestCase):
         self.assertTemplateUsed(
             self.response, "setup/email_licenses/email_license_add.html"
         )
+
+    def test_status_code(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_post_status_code(self):
+        self.assertEqual(self.post_response.status_code, 302)

@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Delete License{% endblock title %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ email_license.license_ld }}?</p>
+    <button class="btn btn-danger" type="submit">Confirm</button>
+</form>
+{% endblock content %}
