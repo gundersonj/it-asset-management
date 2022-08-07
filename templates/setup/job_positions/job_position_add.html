@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Position{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card mt-lg-5 w-40">
+            <div class="col-lg-12 m-lg-3 align-self-center">
+                <h3>Enter position details below.</h3>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-secondary mt-2" type="submit">Save Position</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

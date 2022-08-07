@@ -1,11 +1,14 @@
+from ast import Del
+from multiprocessing.dummy import JoinableQueue
+from typing import List
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 
-from .models import Location, EmailLicense
-from .forms import LocationForm, EmailLicenseForm
+from .models import Location, EmailLicense, JobPosition
+from .forms import LocationForm, EmailLicenseForm, JobPositionForm
 
 
 class LocationListView(LoginRequiredMixin, ListView):
@@ -68,3 +71,35 @@ class EmailLicenseDeleteView(LoginRequiredMixin, DeleteView):
     model = EmailLicense
     template_name = "setup/email_licenses/email_license_delete.html"
     success_url = reverse_lazy("setup:email_license_list")
+
+    
+class JobPositionListView(LoginRequiredMixin, ListView):
+    model = JobPosition
+    template_name = "setup/job_positions/job_position_list.html"
+    context_object_name = "job_position_list"
+
+    
+class JobPositionCreateView(LoginRequiredMixin, CreateView):
+    form_class = JobPositionForm
+    template_name = "setup/job_positions/job_position_add.html"
+    success_url = reverse_lazy("setup:job_position_list")
+
+    
+class JobPositionDetailView(LoginRequiredMixin, DetailView):
+    model = JobPosition
+    template_name = "setup/job_positions/job_position_detail.html"
+    context_object_name = "job_position"
+
+    
+class JobPositionUpdateView(LoginRequiredMixin, UpdateView):
+    model = JobPosition
+    form_class = JobPositionForm
+    template_name = "setup/job_positions/job_position_edit.html"
+    success_url = reverse_lazy("setup:job_position_list")
+
+    
+class JobPositionDeleteView(LoginRequiredMixin, DeleteView):
+    model = JobPosition
+    template_name = "setup/job_positions/job_position_delete.html"
+    success_url = reverse_lazy("setup:job_position_list")
+    

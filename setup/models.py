@@ -38,3 +38,16 @@ class EmailLicense(models.Model):
 
     def get_absolute_url(self):
         return reverse("setup:email_license_detail", args=[str(self.license_id)])
+
+
+class JobPosition(models.Model):
+    position_name = models.CharField(
+        _("Position Name"),
+        max_length=255,
+    )
+
+    def __str__(self):
+        return self.position_name
+
+    def get_absolute_url(self):
+        return reverse("setup:job_position_detail", args=[str(self.id)])

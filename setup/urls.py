@@ -12,11 +12,21 @@ from .views import (
     EmailLicenseUpdateView,
     EmailLicenseDetailView,
     EmailLicenseDeleteView,
+    JobPositionListView,
+    JobPositionCreateView,
+    JobPositionUpdateView,
+    JobPositionDetailView,
+    JobPositionDeleteView,
 )
 
 app_name = "setup"
 
 urlpatterns = [
+    path(
+        "positions/<pk>/delete/",
+        JobPositionDeleteView.as_view(),
+        name="job_position_delete",
+    ),
     path(
         "locations/<pk>/delete/",
         LocationDeleteView.as_view(),
@@ -26,6 +36,11 @@ urlpatterns = [
         "licenses/<pk>/delete/",
         EmailLicenseDeleteView.as_view(),
         name="email_license_delete",
+    ),
+    path(
+        "positions/<pk>/edit/",
+        JobPositionUpdateView.as_view(),
+        name="job_position_edit",
     ),
     path(
         "locations/<pk>/edit/",
@@ -38,6 +53,11 @@ urlpatterns = [
         name="email_license_edit",
     ),
     path(
+        "positions/add/",
+        JobPositionCreateView.as_view(),
+        name="job_position_add",
+    ),
+    path(
         "licenses/add/",
         EmailLicenseCreateView.as_view(),
         name="email_license_add",
@@ -48,6 +68,11 @@ urlpatterns = [
         name="location_add",
     ),
     path(
+        "positions/<pk>/",
+        JobPositionDetailView.as_view(),
+        name="job_position_detail",
+    ),
+    path(
         "licenses/<pk>/",
         EmailLicenseDetailView.as_view(),
         name="email_license_detail",
@@ -56,6 +81,11 @@ urlpatterns = [
         "locations/<pk>/",
         LocationDetailView.as_view(),
         name="location_detail",
+    ),
+    path(
+        "positions/",
+        JobPositionListView.as_view(),
+        name="job_position_list",
     ),
     path(
         "licenses/",
